@@ -14,11 +14,31 @@ const swaggerOptions = {
           responses: {
             200: { description: "Succès" }
           }
+        },
+        post: {
+          summary: "Ajouter un utilisateur",
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    nom: { type: "string" },
+                    prenom: { type: "string" }
+                  }
+                }
+              }
+            }
+          },
+          responses: {
+            201: { description: "Utilisateur créé" }
+          }
         }
       }
     }
   },
-  apis: [], // On laisse vide pour éviter le crash !
+  apis: [], 
 };
 
 export const swaggerSpec = swaggerJsdoc(swaggerOptions);
