@@ -1,6 +1,9 @@
 import sequelize from './config/database.js';
 import userRoutes from './routes/userRoutes.js';
 import express, { type Request, type Response } from 'express';
+import { requestLogger } from './middlewares/logger.js';
+import { errorHandler } from './middlewares/errorHandler.js';
+
 
 const app= express();
 const port= 3000;
@@ -35,6 +38,8 @@ sequelize.authenticate()
 sequelize.sync({ alter: true }) 
     .then(() => {
         console.log('Base de données synchronisée !');
+        
+        app.use(errorHandler);
         
         app.listen(port, () => {
             console.log(`Serveur lancé sur http://localhost:${port}`);
