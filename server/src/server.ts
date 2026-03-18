@@ -5,8 +5,10 @@ import { requestLogger } from './middlewares/logger.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./config/swagger.js";
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 const port = 3000;
 
 // 1. Réglages de base
